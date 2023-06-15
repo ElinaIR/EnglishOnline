@@ -1,5 +1,4 @@
 from datetime import date
-
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models.signals import post_save

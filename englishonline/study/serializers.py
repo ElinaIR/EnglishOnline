@@ -1,11 +1,7 @@
-from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import serializers
-from rest_framework.fields import FileField
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.settings import api_settings
 
 from study.models import *
-from django.contrib.auth.models import User, update_last_login
+from django.contrib.auth.models import User
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -34,6 +30,7 @@ class BaseAudioSerializer(serializers.ModelSerializer):
 
 
 # _________ EGE _________
+
 
 class Task1Serializer(serializers.ModelSerializer):
     class Meta:
@@ -66,9 +63,6 @@ class EGEVariantSerializer(serializers.ModelSerializer):
         model = EGEVariant
         fields = '__all__'
 
-    def create(self, validated_data):
-        return EGEVariant.objects.create(**validated_data)
-
 
 # _________ OGE _________
 
@@ -92,9 +86,6 @@ class OGEVariantSerializer(serializers.ModelSerializer):
         model = OGEVariant
         fields = '__all__'
 
-    def create(self, validated_data):
-        return OGEVariant.objects.create(**validated_data)
-
 
 # _________ VPR _________
 
@@ -112,9 +103,6 @@ class VPRVariantSerializer(serializers.ModelSerializer):
         model = VPRVariant
         fields = '__all__'
 
-    def create(self, validated_data):
-        return VPRVariant.objects.create(**validated_data)
-
 
 class EGEPopularitySerializer(serializers.ModelSerializer):
     user = UserSerializer(default=serializers.CurrentUserDefault())
@@ -126,9 +114,6 @@ class EGEPopularitySerializer(serializers.ModelSerializer):
         model = EGEPopularity
         fields = '__all__'
 
-    def create(self, validated_data):
-        return EGEPopularity.objects.create(**validated_data)
-
 
 class OGEPopularitySerializer(serializers.ModelSerializer):
     user = UserSerializer(default=serializers.CurrentUserDefault())
@@ -139,9 +124,6 @@ class OGEPopularitySerializer(serializers.ModelSerializer):
     class Meta:
         model = OGEPopularity
         fields = '__all__'
-
-    def create(self, validated_data):
-        return OGEPopularity.objects.create(**validated_data)
 
 
 class VPRPopularitySerializer(serializers.ModelSerializer):

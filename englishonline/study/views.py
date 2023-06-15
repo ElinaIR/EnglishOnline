@@ -1,27 +1,15 @@
-import logging
-
 import django.middleware.csrf
-from django.conf import settings
-from django.contrib.auth import login, mixins
 from django.http import JsonResponse
-from django.shortcuts import render
-from rest_framework import generics, viewsets, views
+from rest_framework import generics, viewsets
 from rest_framework.decorators import action
 from rest_framework import status
-from rest_framework.mixins import RetrieveModelMixin
-from rest_framework.parsers import FileUploadParser, MultiPartParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 from .models import *
 from .serializers import *
-
-
-# record = BaseAudio()
-# record.save()
 
 
 def get_csrf_token(request):
@@ -66,6 +54,7 @@ class BaseAudioView(generics.ListAPIView):
 
 
 # _________ EGE _________
+
 
 class Task1ViewSet(viewsets.ModelViewSet):
     queryset = Task1.objects.all()
@@ -132,12 +121,7 @@ class OGEVariantViewSet(viewsets.ModelViewSet):
         return Response({'tasks': [serializer1.data, serializer2.data, serializer3.data]})
 
 
-
 # _________ VPR _________
-
-# class VPRTask1ViewSet(viewsets.ModelViewSet):
-#     queryset = Task1.objects.all()
-#     serializer_class = Task1Serializer
 
 
 class VPRTask2ViewSet(viewsets.ModelViewSet):
